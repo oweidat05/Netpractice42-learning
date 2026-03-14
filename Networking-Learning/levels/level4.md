@@ -1,48 +1,60 @@
-
 # Level 4 – Communication Between Networks Requires a Router
 
 ## 🖼️ Network Diagram
 ![Level 4 Diagram](../diagrams/level4.jpg)
+
 ## 📘 Overview
 
-This example introduces the concept of routing between networks.
+This example introduces the concept of communication between different networks.
 
-Even though devices may be physically connected through a switch, communication between different networks requires a router.  
-The router acts as a gateway that forwards packets from one network to another.
+Even if devices are physically connected through a switch, communication between different networks requires a router.  
+A switch can only forward traffic inside the same network, while a router forwards packets between different networks.
 
 ---
 
-## 🟢 Local Network (LAN)
+## 🟢 Network A
 
-- **Host A:** 192.168.10.10/28  
-- **Host B:** 192.168.10.20/28  
+- **Host A:** 192.168.10.10/24  
 
-With a `/28` mask, the network becomes:
+With a `/24` mask, the network becomes:
 
+192.168.10.0/24
 
-192.168.10.0/28
+Devices inside this network can communicate directly with each other.
 
+---
 
-Devices inside this network can communicate directly.
+## 🔵 Network B
+
+- **Host B:** 172.16.0.20/16  
+
+With a `/16` mask, the network becomes:
+
+172.16.0.0/16
+
+This network is different from Network A.
+
+Because of that, Host A cannot communicate directly with Host B.
 
 ---
 
 ## 🔵 Router Role
 
-The router connects this LAN to another network using its interfaces:
+The router connects the two different networks using its interfaces:
 
-- **Router LAN Interface:** 192.168.10.1/28  
-- **Router WAN Interface:** 172.16.0.1/24  
+- **Router Interface 1:** 192.168.10.1/24  
+- **Router Interface 2:** 172.16.0.1/16  
 
-The router serves as the gateway for devices in the LAN.
+Each interface belongs to a different network.
 
----
-
-##  What Happens
-
-If Host A wants to communicate with another network, it must send packets to the router.  
-The router then forwards the packets to the correct destination network.
-
-Without a gateway, devices cannot reach networks outside their local subnet.
+The router acts as the **gateway** that allows communication between the two networks.
 
 ---
+
+## What Happens
+
+If Host A wants to communicate with Host B, it must send packets to its **default gateway (the router)**.
+
+The router receives the packet, checks the destination network, and forwards it to the correct interface connected to Host B's network.
+
+Without a router, devices cannot communicate with networks outside their local subnet.
