@@ -1,7 +1,7 @@
 # Level 4 – Communication Between Networks Requires a Router
 
 ## 🖼️ Network Diagram
-![Level 4 Diagram](../diagrams/level4.jpg)
+![Level 4 Diagram](../diagrams/level4.png)
 
 ## 📘 Overview
 
